@@ -1,0 +1,15 @@
+<!DOCTYPE aspectj PUBLIC
+        "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+    <weaver options="-Xlint:ignore -Xset:weaveJavaxPackages=true">
+        <exclude within="com.sun.proxy..*" />
+    </weaver>
+
+    <aspects>
+        <concrete-aspect name="profiler"
+                         extends="de.cloudscale.monitor.plugins.request.profile.ProfilerAspect">
+            <pointcut name="methodsToProfile" expression="execution(* de.clouscale.web..*(..)) 
+            AND !within(de.cloudscale.model..*)"/>
+        </concrete-aspect>
+    </aspects>
+</aspectj>
